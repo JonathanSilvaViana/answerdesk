@@ -1,5 +1,6 @@
 package br.com.answerdeskportugues;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,7 @@ import android.widget.Toast;
 
 public class menuLauncherActivity extends AppCompatActivity {
 
-    String url_office, url_windows, url_skype;
+    String url_office, url_windows, url_skype, endereco;
     ImageButton skype, windows, office;
 
     @Override
@@ -37,13 +38,22 @@ public class menuLauncherActivity extends AppCompatActivity {
 
         office = (ImageButton) findViewById(R.id.office);
 
+        //endereco = null;
+
         //função skype
         skype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("skype", "skp");
 
-                finish();
+                //define o skype
+                if (endereco == null)
+                {
+                    endereco = url_skype;
+                }
+
+                else { Log.d("endereço", "não foi possível converter");}
+                corre();
             }
         });
 
@@ -53,7 +63,9 @@ public class menuLauncherActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("windows", "wns");
 
-                finish();
+                //define o windows
+                endereco = url_windows;
+                corre();
             }
         });
 
@@ -63,10 +75,19 @@ public class menuLauncherActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("office", "ofc");
 
-                finish();
+                //define o office
+                endereco = url_office;
+                corre();
             }
         });
 
+    }
+
+    public void corre()
+    {
+        Intent mudaActivity = new Intent(this, WebView.class);
+        mudaActivity.putExtra("endereco", endereco);
+        startActivity(mudaActivity);
     }
 
     @Override
