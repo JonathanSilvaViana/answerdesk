@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WebView"
+        <activity android:name=".WebViewer"
             android:screenOrientation="portrait"
             android:parentActivityName=".menuLauncherActivity"
             ></activity>
